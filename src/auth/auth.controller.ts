@@ -9,7 +9,11 @@ export class AuthController {
   async createUser(@Body() user: AuthUser) {
 		return this.authService.createUserByEmail(user);
 	}
-	
+//createUserByGoogle
+	@Post('/google')
+  async createUserByGoogle() {
+		return this.authService.createUserByGoogle();
+	}
 	@HttpCode(200)
 	@Post('/login')
   async login(@Body() user: AuthUser) {

@@ -13,6 +13,16 @@ export class UsersService {
 		newUser = JSON.parse(jsonUser);
 		db.collection("Users").doc(newUser.email).set(newUser);
 	}
+	async getUserByEmail(email: string) {
+		const db = admin.firestore();
+		const user = db.collection("Users").doc(email);
+		const doc = await user.get();
+		if (!doc.exists) {
+ 		//  кинуть ошибку
+	 	} else {
+			return doc.data();
+		}
+	}
 
 	async getAllUsers() {
 		const db = admin.firestore();
