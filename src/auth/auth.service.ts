@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { initializeApp } from "firebase/app";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, getRedirectResult, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { firebaseConfig } from './firebaseConfig';
 import { AuthUser } from './model/auth.user';
 import { UsersService } from 'src/user/user.service';
@@ -46,18 +46,13 @@ export class AuthService {
 	}
 	async createUserByGoogle() {
 		const auth = getAuth();
-		const provider = new GoogleAuthProvider();
-		signInWithPopup(auth, provider)
+		getRedirectResult(auth)
 			.then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
+    // This gives you a Google Access Token. You can use it to access Google APIs.
 				const credential = GoogleAuthProvider.credentialFromResult(result);
 				const token = credential.accessToken;
-    // The signed-in user info.
+				// The signed-in user info.
 				const user = result.user;
-				console.log(user);
-
-
-    // ...
   }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
@@ -68,5 +63,6 @@ export class AuthService {
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
   });
+
 	}
 }
