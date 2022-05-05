@@ -6,16 +6,16 @@ import * as admin from 'firebase-admin';
 @Injectable()
 export class UsersService {
 	constructor(private userfactory: UserFactory) { }
-	async createUser(dto: UserCreateDto) {
+	async createUser(dto: UserCreateDto, userUID: string) {
 		let newUser = this.userfactory.createFromDto(dto)
 		const db = admin.firestore();
 		const jsonUser = JSON.stringify(newUser);
 		newUser = JSON.parse(jsonUser);
-		db.collection("Users").doc(newUser.email).set(newUser);
+		db.collection("Users").doc(userUID).set(newUser);
 	}
-	async getUserByEmail(email: string) {
+	async getUserByUID(userUID: string) {
 		const db = admin.firestore();
-		const user = db.collection("Users").doc(email);
+		const user = db.collection("Users").doc(userUID);
 		const doc = await user.get();
 		if (!doc.exists) {
  		//  кинуть ошибку
@@ -23,7 +23,6 @@ export class UsersService {
 			return doc.data();
 		}
 	}
-
 	async getAllUsers() {
 		const db = admin.firestore();
 		const allUsersRef = db.collection('Users');

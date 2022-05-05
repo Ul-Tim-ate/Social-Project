@@ -1,26 +1,33 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Render } from '@nestjs/common';
+import { AuthUser } from 'src/auth/model/auth.user';
 import { UserCreateDto } from './dto/user.create.dto';
 import { UsersService } from './user.service';
 
 @Controller('/user')
 export class UserController {
 	constructor(private readonly userService: UsersService) {}
-  @Post()
-	async createUser(@Body() user: UserCreateDto) {
-		return this.userService.createUser(user);
+  // @Post()
+	// async createUser(@Body() user: UserCreateDto) {
+	// 	return this.userService.createUser(user);
+	// }
+
+	@Get()
+	async getUser(@Body() user: AuthUser) {
+		return user;
 	}
-	@Get('/:email')
-	async getUserByEmail(@Param('email') email: string) {
-		return this.userService.getUserByEmail(email);
+	@Render('user')
+	@Get('/:userUID')
+	async getUserByEmail(@Param('userUID') userUID: string) {
+		return this.userService.getUserByUID(userUID);
 	}
 
-	@Delete('/:email')
-	async deleteUserByEmail(@Param('email') email: string) {
-    return this.userService.deleteAuthorByEmail(email);
-	}
+	// @Delete('/:userUID')
+	// async deleteUserByEmail(@Param('userUID') userUID: string) {
+  //   return this.userService.deleteAuthorByEmail(userUID);
+	// }
 
-	@Get('')
-  async getAllUsers() {
-    return this.userService.getAllUsers();
-	}
+	// @Get('')
+  // async getAllUsers() {
+  //   return this.userService.getAllUsers();
+	// }
 }
