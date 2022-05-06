@@ -13,7 +13,6 @@ export class UsersService {
 		newUser = JSON.parse(jsonUser);
 		db.collection("Users").doc(userUID).set(newUser);
 	}
-	
 	async getUserByUID(userUID: string) {
 		const db = admin.firestore();
 		const user = db.collection("Users").doc(userUID);
@@ -37,8 +36,8 @@ export class UsersService {
 		});
 		return allUSers;
 	}
-	async deleteAuthorByEmail(email: string) {
+	async deleteUserByUID(userUID: string) {
 		const db = admin.firestore();
-		const res = await db.collection('Users').doc(email).delete();
+		const res = await db.collection('Users').doc(userUID).delete();
   }
 }

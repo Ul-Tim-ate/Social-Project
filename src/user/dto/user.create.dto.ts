@@ -1,4 +1,4 @@
-import { IsDateString, IsDefined, IsNumber, IsString } from 'class-validator';
+import { IsDateString, IsDefined, IsString } from 'class-validator';
 
 export class UserCreateDto {
 

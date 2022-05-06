@@ -18,6 +18,7 @@ export class AuthController {
   getRegisterPage() {
     return {};
 	}
+	
 	@Redirect('/login.html')
   @Post('register')
   async register(@Body() dto: AuthUser) {
@@ -28,7 +29,7 @@ export class AuthController {
 	@HttpCode(200)
 	@Post('login')
 	async login(@Body() user: AuthUser) {
-		const userUID = await this.authService.login(user)
+		const userUID = await this.authService.login(user);
 		return { url: `http://localhost:4000/user/${userUID}`}
 
 	}

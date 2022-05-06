@@ -6,7 +6,7 @@ import { UserEntity } from "../models/entity/user.entity";
 export class UserFactory {
   public createFromDto(dto: UserCreateDto) {
    const user = new UserEntity();
-	 user.countOfOpens = 0; // 
+	 user.countOfOpens = 0; //
 	 user.email = dto.email;
 	 user.dateOfRegist = dto.dateOfRegist;
 	 user.passwordHash = dto.password; //нужно добавить хэширование bcrypt
