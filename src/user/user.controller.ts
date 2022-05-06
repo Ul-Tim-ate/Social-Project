@@ -11,13 +11,9 @@ export class UserController {
 	// 	return this.userService.createUser(user);
 	// }
 
-	@Get()
-	async getUser(@Body() user: AuthUser) {
-		return user;
-	}
 	@Render('user')
 	@Get('/:userUID')
-	async getUserByEmail(@Param('userUID') userUID: string) {
+	async getUserByUID(@Param('userUID') userUID: string) {
 		return this.userService.getUserByUID(userUID);
 	}
 

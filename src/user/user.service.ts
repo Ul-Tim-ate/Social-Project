@@ -13,6 +13,7 @@ export class UsersService {
 		newUser = JSON.parse(jsonUser);
 		db.collection("Users").doc(userUID).set(newUser);
 	}
+	
 	async getUserByUID(userUID: string) {
 		const db = admin.firestore();
 		const user = db.collection("Users").doc(userUID);
