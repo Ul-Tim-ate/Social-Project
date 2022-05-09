@@ -5,6 +5,6 @@ import { ProjectFactory } from './factory/project.factory';
 
 @Module({
   providers: [ProjectsService, ProjectFactory],
-  controllers: [ProjectsController]
+  controllers: [ProjectsController],
 })
 export class ProjectsModule {}

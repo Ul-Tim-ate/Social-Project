@@ -1,6 +1,6 @@
 export class UserEntity {
   email: string;
   passwordHash: string;
-	countOfOpens: number;
+  countOfOpens: number;
   dateOfRegist: Date;
 }
