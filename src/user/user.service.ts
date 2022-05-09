@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+	ConflictException,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { UserCreateDto } from './dto/user.create.dto';
 import { UserFactory } from './factory/user.factory';
 import * as admin from 'firebase-admin';
@@ -11,14 +16,21 @@ export class UsersService {
     const db = admin.firestore();
     const jsonUser = JSON.stringify(newUser);
     newUser = JSON.parse(jsonUser);
-    db.collection('Users').doc(userUID).set(newUser);
+
+    db.collection('Users')
+      .doc(userUID)
+      .set(newUser)
+			.catch(() => {
+				throw new ConflictException();
+			});
   }
+
   async getUserByUID(userUID: string) {
     const db = admin.firestore();
     const user = db.collection('Users').doc(userUID);
     const doc = await user.get();
     if (!doc.exists) {
-      //  кинуть ошибку
+      throw new NotFoundException();
     } else {
       return doc.data();
     }
@@ -28,7 +40,7 @@ export class UsersService {
     const allUsersRef = db.collection('Users');
     const snapshot = await allUsersRef.get();
     if (snapshot.empty) {
-      return 'No one User';
+      throw new NotFoundException();
     }
     let allUSers = new Array();
     snapshot.forEach((doc) => {
@@ -38,6 +50,10 @@ export class UsersService {
   }
   async deleteUserByUID(userUID: string) {
     const db = admin.firestore();
-    const res = await db.collection('Users').doc(userUID).delete();
+    try {
+      const res = await db.collection('Users').doc(userUID).delete();
+    } catch (error) {
+      throw new NotFoundException();
+    }
   }
 }

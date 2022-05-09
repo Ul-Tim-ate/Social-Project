@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { initializeApp } from 'firebase/app';
 import {
   createUserWithEmailAndPassword,
@@ -6,6 +6,7 @@ import {
   getRedirectResult,
   signInWithEmailAndPassword,
   signInWithPopup,
+	User,
 } from 'firebase/auth';
 import { firebaseConfig } from './firebaseConfig';
 import { AuthUser } from './model/auth.user';
@@ -53,7 +54,15 @@ export class AuthService {
       console.log(errorCode, errorMessage);
     }
   }
-
+  checkAuth(): User {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user) {
+      return user;
+    } else {
+      throw new UnauthorizedException();
+    }
+  }
   // async createUserByGoogle() {
   // 	const auth = getAuth();
   // 	getRedirectResult(auth)

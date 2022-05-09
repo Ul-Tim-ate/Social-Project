@@ -8,6 +8,7 @@ import { UserFactory } from 'src/user/factory/user.factory';
 @Module({
 	imports: [UserModule],
   providers: [AuthService, UsersService, UserFactory],
-  controllers: [AuthController]
+	controllers: [AuthController],
+	exports: [AuthService]
 })
 export class AuthModule {}

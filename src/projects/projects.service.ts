@@ -1,14 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ProjectCreateDto } from './dto/project.create.dto';
 import { ProjectFactory } from './factory/project.factory';
 import * as admin from 'firebase-admin';
 import { ProjectEntity } from './model/project.entity';
 import { FieldValue } from 'firebase-admin/firestore';
-import { getAuth } from 'firebase/auth';
+import { getAuth, User } from 'firebase/auth';
+import { BaseExceptionFilter } from '@nestjs/core';
+import { AuthService } from 'src/auth/auth.service';
 
 @Injectable()
 export class ProjectsService {
-  constructor(private projectfactory: ProjectFactory) {}
+  constructor(
+    private projectfactory: ProjectFactory,
+    private authService: AuthService,
+  ) {}
   async createProject(dto: ProjectCreateDto): Promise<string> {
     let newProject = this.projectfactory.createFromDto(dto);
     const db = admin.firestore();
@@ -41,12 +46,18 @@ export class ProjectsService {
       return doc.data();
     }
   }
-  async addPointToProject(id: string, points: number) {
+  async updateCurrentSumAndInvestedUsers(projectID: string, addSum: number) {
+    let user;
+    try {
+      user = await this.authService.checkAuth();
+    } catch (error) {
+      return { url: process.env.AUTH_PAGE };
+    }
     const db = admin.firestore();
-    const project = db.collection('Projects').doc(id);
-    await project.update({ currentSum: FieldValue.increment(points) });
-    const auth = getAuth();
-    const user = auth.currentUser;
-    console.log(user.uid);
+    const project = db.collection('Projects').doc(projectID);
+    project.update({
+      currentSum: FieldValue.increment(addSum),
+      investedUsersUID: FieldValue.arrayUnion(user.uid),
+    });
   }
 }

@@ -38,11 +38,13 @@ export class ProjectsController {
     return this.projectService.getProject(projectID);
   }
 
+  @Redirect()
   @Post('/:projectID')
-  async addPointToProject(@Param('projectID') projectID: string, @Body() dto) {
-    return await this.projectService.addPointToProject(
+  async addSumToProject(@Param('projectID') projectID: string, @Body() dto) {
+    this.projectService.updateCurrentSumAndInvestedUsers(
       projectID,
       parseInt(dto.countOfPOints),
-    );
+		);
+		return { url: `${process.env.PROJECT_PAGE}${projectID}` };
   }
 }
