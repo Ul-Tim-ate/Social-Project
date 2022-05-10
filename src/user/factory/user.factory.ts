@@ -9,7 +9,7 @@ export class UserFactory {
     user.countOfOpens = 0; //
     user.email = dto.email;
     user.dateOfRegist = dto.dateOfRegist;
-    user.passwordHash = dto.password; //нужно добавить хэширование bcrypt
+		user.passwordHash = dto.password; //нужно добавить хэширование bcrypt
     return user;
   }
 }

@@ -41,7 +41,7 @@ export class ProjectsController {
   @Redirect()
   @Post('/:projectID')
   async addSumToProject(@Param('projectID') projectID: string, @Body() dto) {
-    this.projectService.updateCurrentSumAndInvestedUsers(
+    await this.projectService.updateCurrentSumAndInvestedUsers(
       projectID,
       parseInt(dto.countOfPOints),
 		);

@@ -7,12 +7,14 @@ import { FieldValue } from 'firebase-admin/firestore';
 import { getAuth, User } from 'firebase/auth';
 import { BaseExceptionFilter } from '@nestjs/core';
 import { AuthService } from 'src/auth/auth.service';
+import { UsersService } from 'src/user/user.service';
 
 @Injectable()
 export class ProjectsService {
   constructor(
     private projectfactory: ProjectFactory,
     private authService: AuthService,
+    private userService: UsersService,
   ) {}
   async createProject(dto: ProjectCreateDto): Promise<string> {
     let newProject = this.projectfactory.createFromDto(dto);
@@ -51,8 +53,9 @@ export class ProjectsService {
     try {
       user = await this.authService.checkAuth();
     } catch (error) {
-      return { url: process.env.AUTH_PAGE };
-    }
+			throw new UnauthorizedException();
+		}
+		this.userService.donateToProject(user.uid, projectID, addSum);
     const db = admin.firestore();
     const project = db.collection('Projects').doc(projectID);
     project.update({

@@ -1,5 +1,5 @@
 import {
-	ConflictException,
+  ConflictException,
   Injectable,
   NotFoundException,
   UnauthorizedException,
@@ -7,6 +7,7 @@ import {
 import { UserCreateDto } from './dto/user.create.dto';
 import { UserFactory } from './factory/user.factory';
 import * as admin from 'firebase-admin';
+import { FieldValue } from 'firebase-admin/firestore';
 
 @Injectable()
 export class UsersService {
@@ -16,13 +17,12 @@ export class UsersService {
     const db = admin.firestore();
     const jsonUser = JSON.stringify(newUser);
     newUser = JSON.parse(jsonUser);
-
     db.collection('Users')
       .doc(userUID)
       .set(newUser)
-			.catch(() => {
-				throw new ConflictException();
-			});
+      .catch(() => {
+        throw new ConflictException();
+      });
   }
 
   async getUserByUID(userUID: string) {
@@ -55,5 +55,26 @@ export class UsersService {
     } catch (error) {
       throw new NotFoundException();
     }
+  }
+  async donateToProject(userUID: string, projectID: string, sumDonate: number) {
+    const db = admin.firestore();
+    const user = db.collection('Users').doc(userUID);
+    const data = await user.get();
+    if (data.data().supportedProjects != '') {
+      data.data().supportedProjects.forEach((element) => {
+        if (element.projectID == projectID) {
+          sumDonate += +element.sumDonate;
+          user.update({
+            supportedProjects: FieldValue.arrayRemove(element),
+          });
+        }
+      });
+    }
+    user.update({
+      supportedProjects: FieldValue.arrayUnion({
+        projectID,
+        sumDonate,
+      }),
+    });
   }
 }
