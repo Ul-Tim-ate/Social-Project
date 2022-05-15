@@ -55,7 +55,7 @@ export class AuthController {
   @Post('/login')
   async login(@Body() user: AuthUser) {
     const userUID = await this.authService.login(user);
-    return { url: `${process.env.HOST}newtab` };
+    return { url: `${process.env.HOST}user/${userUID}` };
   }
 
   @HttpCode(200)
@@ -65,5 +65,15 @@ export class AuthController {
     console.log(dto);
     this.authService.createUserByEmail(dto);
     return { url: `${process.env.HOST}auth/sign-in` };
+  }
+
+  @Get('sign-out')
+  signOut() {
+    this.authService.signOut();
+	}
+	
+  @Get('delete')
+  deleteUser() {
+    this.authService.deleteUser();
   }
 }

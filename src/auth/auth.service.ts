@@ -2,9 +2,11 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { initializeApp } from 'firebase/app';
 import {
   createUserWithEmailAndPassword,
+  deleteUser,
   getAuth,
   sendEmailVerification,
   signInWithEmailAndPassword,
+  signOut,
   User,
 } from 'firebase/auth';
 import {} from 'firebase/app';
@@ -76,8 +78,28 @@ export class AuthService {
     const auth = getAuth();
     sendEmailVerification(auth.currentUser);
   }
-  getCurrentUser() : User {
+  getCurrentUser(): User {
     const auth = getAuth();
     return auth.currentUser;
+  }
+  signOut() {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {})
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }
+  deleteUser() {
+		const auth = getAuth();
+		const user = auth.currentUser
+    deleteUser(user)
+      .then(() => {
+        this.userService.deleteUserByUID(user.uid);
+      })
+      .catch((error) => {
+        // An error ocurred
+        // ...
+      });
   }
 }

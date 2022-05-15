@@ -2,7 +2,6 @@ import {
   ConflictException,
   Injectable,
   NotFoundException,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { UserCreateDto } from './dto/user.create.dto';
 import { UserFactory } from './factory/user.factory';
