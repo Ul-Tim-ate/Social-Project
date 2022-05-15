@@ -61,4 +61,19 @@ export class ProjectsService {
       investedUsersUID: FieldValue.arrayUnion(user.uid),
     });
   }
+  async getProjectByName(projectName: string) {
+    const db = admin.firestore();
+    const citiesRef = db.collection('Projects');
+    const project = await citiesRef.where('name', '==', projectName).get();
+    if (project.empty) {
+      console.log('No matching documents.');
+      return;
+		}
+		let projectProperties;
+		project.forEach((doc) => {
+			projectProperties = doc.data();
+
+		});
+    return projectProperties;
+  }
 }

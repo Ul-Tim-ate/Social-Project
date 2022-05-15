@@ -1,0 +1,46 @@
+doctype html
+html(lang='ru')
+	head
+		include partials/meta.pug
+		link(rel='stylesheet' href='/css/project-detailed.css')
+		title #{name}
+	body
+		main.main
+			.container
+				.main-wrapper
+					section.main__donate
+						span
+							b  Donate your scores
+						br
+						span Account
+					section.main__project.project
+						img.project__img(src='/img/project-account.jpg' alt='')
+						h2.project__name #{name}
+						.project__text
+							p #{description}
+					section.main__project-info.project-info
+						.project-info__progress.progress
+							span.progress__counts #{currentSum} hearts
+							span.progress__people from переменна people
+							img.progress__img(src='#' alt='')
+							span.progress__number
+						button.project-info__button Donate 10 scores
+				// /.main-wrapper
+				// /.container
+		footer.footer
+			.container
+				.footer-wrapper
+					nav.footer__nav.nav
+						ul.nav__list
+							li.nav__item
+								a(href='#') Q/A
+							li.nav__item
+								a(href='#') Financials
+							li.nav__item
+								a(href='#') Contact
+							li.nav__item
+								a(href='#') Blog
+							li.nav__item
+								a(href='#') Terms
+				// /.footer-wrapper
+				// /.container

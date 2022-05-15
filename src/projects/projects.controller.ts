@@ -21,21 +21,17 @@ export class ProjectsController {
     return { url: `${process.env.HOST}projects/${projectID}` };
   }
 
-  @Render('projects-list')
+  @Render('projects')
   @Get()
   async getAllProjects() {
     const projects = await this.projectService.getAllProjects();
-    const projectsName = [];
-    projects.forEach((element) => {
-      projectsName.push(element.name);
-    });
-    return { projects: projectsName };
+    return { projects: projects };
   }
 
-  @Render('project')
-  @Get('/:projectID')
-  getProject(@Param('projectID') projectID: string) {
-    return this.projectService.getProject(projectID);
+  @Render('project-detailed')
+  @Get('/:projectName')
+  async getProject(@Param('projectName') projectName: string) {
+    return await this.projectService.getProjectByName(projectName);
   }
 
   @Redirect()
@@ -44,7 +40,7 @@ export class ProjectsController {
     await this.projectService.updateCurrentSumAndInvestedUsers(
       projectID,
       parseInt(dto.countOfPOints),
-		);
-		return { url: `${process.env.PROJECT_PAGE}${projectID}` };
+    );
+    return { url: `${process.env.PROJECT_PAGE}${projectID}` };
   }
 }

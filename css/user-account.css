@@ -36,7 +36,7 @@ li {
 }
 
 .main {
-  padding-top: 60px;
+  padding-top: 40px;
 }
 
 .main-wrapper {
@@ -49,61 +49,83 @@ li {
 }
 
 .main__donate {
-  margin-top: 15px;
+  margin-top: 20px;
+  width: 170px;
+  font-size: 20px;
+  line-height: 25px;
   background: #FFFBFB;
-  width: 160px;
-  height: 100px;
+  padding: 15px 10px;
+  margin-right: 30px;
+}
+
+.account-info {
+  width: 100%;
+}
+
+.account-info__user-data {
+  margin-bottom: 30px;
+}
+
+.user-data {
+  padding: 10px 10px;
+  background: #F4F4F4;
+}
+
+.user-data__header {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+.user-data__item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  width: 40%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.user-data__list {
+  margin-bottom: 20px;
+}
+
+.user-data__signout {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.user-data__delete {
+  display: block;
+}
+
+.user-stats {
+  background: #F4F4F4;
   padding: 10px;
+  padding-bottom: 40px;
 }
 
-.main__project-list {
-  margin-left: 40px;
+.user-stats__header {
+  margin-bottom: 20px;
 }
 
-.project-list {
+.user-stats__list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-	justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
-.project-list__item {
-  margin-bottom: 40px;
+.user-stats__item {
+  background-color: #C4C4C4;
+  padding: 30px 30px;
+  text-align: center;
 }
 
-.project-list__img {
-  width: 330px;
-  height: 270px;
-}
-
-.project-list__input {
-  width: 330px;
-}
-
-.project-list__name {
-  max-width: 335px;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 35px;
-  margin-bottom: 15px;
-}
-
-.project-list__goal, .project-list__collected {
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 29px;
+.footer {
+  margin-top: 60px;
 }
 
 .footer-wrapper {
@@ -129,4 +151,4 @@ li {
   height: 100%;
   width: 800px;
 }
-/*# sourceMappingURL=projects.css.map */
+/*# sourceMappingURL=user-account.css.map */

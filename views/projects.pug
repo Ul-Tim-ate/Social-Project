@@ -1,0 +1,48 @@
+doctype html
+html(lang='ru')
+	head
+		include partials/meta.pug
+		link(rel='stylesheet' href='/css/projects.css')
+		title Projects
+	body
+		mixin project(projectData = [])
+			li.project-list__item
+				a(href='/projects/' + projectData.name)
+					img.project-list__img(src='img/project-photo.jpg' alt='')
+				h2.project-list__name
+					a(href='/projects/' + projectData.name)= projectData.name
+				input#current-collect.project-list__input(type='text')
+				label.project-list__goal(for='current-collect') Goal #{projectData.totalSum}
+				p.project-list__collected #{projectData.currentSum} scores donated
+		main.main
+			.container
+				.main-wrapper
+					.main__donate
+						span
+							b  Donate your scores
+						br
+						span Account
+					// /.donate
+					- var values = projects;
+					ul.main__project-list.project-list
+						each project in values
+							+project(project)
+				// /.main-wrapper
+				// /.container
+		footer.footer
+			.container
+				.footer-wrapper
+					nav.footer__nav.nav
+						ul.nav__list
+							li.nav__item
+								a(href='#') Q/A
+							li.nav__item
+								a(href='#') Financials
+							li.nav__item
+								a(href='#') Contact
+							li.nav__item
+								a(href='#') Blog
+							li.nav__item
+								a(href='#') Terms
+				// /.footer-wrapper
+				// /.container

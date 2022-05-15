@@ -36,7 +36,7 @@ li {
 }
 
 .main {
-  padding-top: 60px;
+  padding-top: 40px;
 }
 
 .main-wrapper {
@@ -46,64 +46,56 @@ li {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .main__donate {
-  margin-top: 15px;
+  margin-top: 20px;
+  width: 170px;
+  font-size: 20px;
+  line-height: 25px;
   background: #FFFBFB;
-  width: 160px;
-  height: 100px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  padding: 15px 10px;
+}
+
+.project {
+  width: 500px;
+}
+
+.project__text, .project__name {
+  background-color: #fff;
+}
+
+.project-info__button {
+  background: #26C536;
+  width: 100%;
   padding: 10px;
+  cursor: pointer;
 }
 
-.main__project-list {
-  margin-left: 40px;
+.project-info__progress {
+  margin-bottom: 10px;
 }
 
-.project-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-	justify-content: space-between;
+.progress {
+  background: #E2E1E1;
+  height: 100px;
+  width: 300px;
+  padding: 20px 10px;
 }
 
-.project-list__item {
-  margin-bottom: 40px;
+.progress__counts {
+  font-size: 18px;
+  line-height: 20px;
+  margin-bottom: 10px;
+  display: block;
 }
 
-.project-list__img {
-  width: 330px;
-  height: 270px;
-}
-
-.project-list__input {
-  width: 330px;
-}
-
-.project-list__name {
-  max-width: 335px;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 35px;
-  margin-bottom: 15px;
-}
-
-.project-list__goal, .project-list__collected {
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 29px;
+.progress__people {
+  font-size: 13px;
+  line-height: 15px;
 }
 
 .footer-wrapper {
@@ -129,4 +121,4 @@ li {
   height: 100%;
   width: 800px;
 }
-/*# sourceMappingURL=projects.css.map */
+/*# sourceMappingURL=project-detailed.css.map */

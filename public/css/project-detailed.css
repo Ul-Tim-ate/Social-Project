@@ -50,6 +50,13 @@ li {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+body{
+	display: flex;
+	flex-direction: column;
+}
+footer{
+	margin-top: auto;
+}
 
 .main__donate {
   margin-top: 20px;
@@ -62,10 +69,10 @@ li {
 
 .project {
   width: 500px;
+	background-color: #fff;
 }
-
-.project__text, .project__name {
-  background-color: #fff;
+.project__name{
+	margin-bottom: 20px;
 }
 
 .project-info__button {

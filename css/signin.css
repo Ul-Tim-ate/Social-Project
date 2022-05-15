@@ -1,0 +1,108 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+body, html {
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+  background-color: #C4C4C4;
+  height: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+li {
+  list-style-type: none;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.signin {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 300px;
+  background-color: #fff;
+  padding: 30px;
+}
+
+.signin__header {
+  font-size: 25px;
+  margin-bottom: 30px;
+}
+
+.signin__email {
+  border: none;
+  border-bottom: 1px solid grey;
+  margin-bottom: 40px;
+  padding: 5px;
+}
+
+.signin__submit {
+  color: white;
+  border: none;
+  background-color: #2f32e5;
+  padding: 8px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.signin__cancel {
+  font-size: 15px;
+  color: #2f32e5;
+  margin-right: 10px;
+}
+
+.signin__buttons {
+  margin-left: auto;
+  margin-bottom: 40px;
+}
+
+.signin__hrefs {
+  font-size: 13px;
+  margin-left: auto;
+  color: blue;
+}
+
+.signin__terms {
+  margin-right: 8px;
+}
+/*# sourceMappingURL=signin.css.map */
