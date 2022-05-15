@@ -1,0 +1,58 @@
+doctype html
+html(lang='ru')
+	head
+		include partials/meta.pug
+		link(rel='stylesheet' href='/css/user-account.css')
+		title User Account
+	body
+		main.main
+			.container
+				.main-wrapper
+					section.main__donate
+						span  Donate your scores
+						br
+						span
+							b Account
+					section.main__account-info.account-info
+						section.account-info__user-data.user-data
+							h2.user-data__header Account
+							ul.user-data__list
+								li.user-data__item
+									span.user-data__key email
+									span.user-data__value #{email}
+							a.user-data__signout(href=`${process.env.SIGN_OUT}`) Sign out
+							a.user-data__delete(href=`${process.env.DELETE_ACCOUNT}`) Delete account
+						section.main__user-stats.user-stats
+							h2.user-stats__header Your Statistics
+							ul.user-stats__list
+								li.user-stats__item
+									span.user-stats__value #{countOfOpens}
+									br
+									span.user-stats__key Scores Earned
+								li.user-stats__item
+									span.user-stats__value 0
+									br
+									span.user-stats__key  Tabs Oppened
+								li.user-stats__item
+									span.user-stats__value 0
+									br
+									span.user-stats__key  heart s earned per day
+				// /.main-wrapper
+				// /.container
+		footer.footer
+			.container
+				.footer-wrapper
+					nav.footer__nav.nav
+						ul.nav__list
+							li.nav__item
+								a(href='#') Q/A
+							li.nav__item
+								a(href='#') Financials
+							li.nav__item
+								a(href='#') Contact
+							li.nav__item
+								a(href='#') Blog
+							li.nav__item
+								a(href='#') Terms
+				// /.footer-wrapper
+				// /.container
