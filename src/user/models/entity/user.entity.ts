@@ -3,5 +3,5 @@ export class UserEntity {
   passwordHash: string;
   countOfOpens: number;
 	dateOfRegist: Date;
-	// supportedProjects: Map<string, number>;
+	// supportedProjects: Array<>
 }

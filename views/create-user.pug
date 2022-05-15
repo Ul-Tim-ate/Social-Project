@@ -1,0 +1,17 @@
+doctype html
+html(lang='ru')
+	head
+		include partials/meta.pug
+		link(rel='stylesheet' href='/css/sign-email.css')
+		title Create Account
+	body
+		form.signin(action='register' method="post")
+			h2.signin__header Create account
+			input.signin__email(type='text' placeholder='Email' name='email')
+			input.signin__email(type='password' placeholder='Password' name='password')
+			.signin__buttons
+				a.signin__cancel(href='#') Cancel
+				input.signin__submit(type='submit' value='Save')
+			.signin__hrefs
+				a.signin__terms(href='#') Term of Service
+				a.signin__privacy(href='#') Privacy Policy

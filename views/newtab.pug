@@ -1,0 +1,31 @@
+doctype html
+html(lang='ru')
+	head
+		include partials/meta.pug
+		link(rel='stylesheet' href='/css/start-page.css')
+		title New Tab
+	body
+		header.header
+			.container
+				.header-wrapper
+					.header__burger
+					// /.avatar
+					ul.header__collected-info
+						li.header__all-collected Collected Total Today by All: #{allCollected}
+						li.header__you-collected You Collected: #{countOfOpens}
+				// /.header-wrapper
+				// /.container
+		main.main
+			.container
+				.main-wrapper
+					.main__time-info
+						time#time.main__time 10:00 PM
+						br
+						time#date.main__date Tuesday, April 14
+					// /.main__time-info
+					form(action='')
+						input.main__request(type='text' placeholder='Search Google or type a URL')
+				// /.main-wrapper
+				section.main__advert.advert
+					span.advert__text  Ad Banner
+			// /.container

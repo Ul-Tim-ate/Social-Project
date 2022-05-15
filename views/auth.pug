@@ -1,0 +1,11 @@
+doctype html
+html(lang='ru')
+	head
+		include partials/meta.pug
+		link(rel='stylesheet' href='/css/auth.css')
+		title Auth
+	body
+		form.auth(action='google')
+			input.auth__google.auth__input(type='submit' value='Sign in with Google')
+		form.auth(action='auth/email' method="get")
+			input.auth__email.auth__input(type='submit'  value='Sign in with email')

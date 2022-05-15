@@ -22,7 +22,6 @@ async function bootstrap() {
   admin.initializeApp({
     credential: admin.credential.cert(adminConfig),
 	});
-
   app.enableCors();
 	app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '../views'));

@@ -4,8 +4,6 @@ import { ProjectFactory } from './factory/project.factory';
 import * as admin from 'firebase-admin';
 import { ProjectEntity } from './model/project.entity';
 import { FieldValue } from 'firebase-admin/firestore';
-import { getAuth, User } from 'firebase/auth';
-import { BaseExceptionFilter } from '@nestjs/core';
 import { AuthService } from 'src/auth/auth.service';
 import { UsersService } from 'src/user/user.service';
 
@@ -53,9 +51,9 @@ export class ProjectsService {
     try {
       user = await this.authService.checkAuth();
     } catch (error) {
-			throw new UnauthorizedException();
-		}
-		this.userService.donateToProject(user.uid, projectID, addSum);
+      throw new UnauthorizedException();
+    }
+    this.userService.donateToProject(user.uid, projectID, addSum);
     const db = admin.firestore();
     const project = db.collection('Projects').doc(projectID);
     project.update({

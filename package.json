@@ -28,7 +28,7 @@
     "class-validator": "^0.13.2",
     "dotenv": "^16.0.0",
     "firebase": "^9.7.0",
-    "firebase-admin": "^10.1.0",
+    "firebase-admin": "^10.2.0",
     "pug": "^3.0.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

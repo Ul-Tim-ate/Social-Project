@@ -8,6 +8,7 @@ import { UserCreateDto } from './dto/user.create.dto';
 import { UserFactory } from './factory/user.factory';
 import * as admin from 'firebase-admin';
 import { FieldValue } from 'firebase-admin/firestore';
+import { UserEntity } from './models/entity/user.entity';
 
 @Injectable()
 export class UsersService {
@@ -24,7 +25,6 @@ export class UsersService {
         throw new ConflictException();
       });
   }
-
   async getUserByUID(userUID: string) {
     const db = admin.firestore();
     const user = db.collection('Users').doc(userUID);
@@ -76,5 +76,25 @@ export class UsersService {
         sumDonate,
       }),
     });
+  }
+  incCountOfOpens(userUID: string) {
+    const db = admin.firestore();
+    const user = db.collection('Users').doc(userUID);
+    user.update({
+      countOfOpens: FieldValue.increment(1),
+    });
+  }
+  async getAllCollected() {
+    const db = admin.firestore();
+    const allUsersRef = db.collection('Users');
+    const snapshot = await allUsersRef.get();
+    if (snapshot.empty) {
+      throw new NotFoundException();
+    }
+    let allCollected = 0;
+    snapshot.forEach((doc) => {
+      allCollected += +doc.data().countOfOpens; //allUSers.push(doc.data());
+    });
+    return allCollected;
   }
 }
