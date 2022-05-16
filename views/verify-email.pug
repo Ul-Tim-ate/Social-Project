@@ -5,9 +5,9 @@ html(lang='ru')
 		link(rel='stylesheet' href='/css/verify.css')
 		title Verify Email
 	body
-		form.verify(action='#')
+		form.verify(action='send-email' method='get')
 			h2.verify__header
 				| Please check your email to verify your account.
 			.verify__buttons
-				a.verify__button(href='#') CANCEL
+				a.verify__button(href=`${process.env.AUTH_PAGE}`) CANCEL
 				input.verify__button(type='submit' value='RESEND EMAIL')

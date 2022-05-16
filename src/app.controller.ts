@@ -1,7 +1,6 @@
 import { BadGatewayException, Controller, Get, HttpException, Redirect, Render, UseFilters } from '@nestjs/common';
 import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
-import { BadGatewayExceptionFilter } from './search/search.interceptor';
 import { UsersService } from './user/user.service';
 
 @Controller('/')
@@ -22,9 +21,9 @@ export class AppController {
     return { allCollected, countOfOpens };
   }
 
-  @Redirect('auth/email')
+	@Redirect("auth/email")
   @Get('email')
   async toAuthEmail() {
-    return;
+		return
   }
 }

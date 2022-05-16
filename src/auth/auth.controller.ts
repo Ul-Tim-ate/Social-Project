@@ -12,6 +12,7 @@ import { AuthService } from './auth.service';
 import { AuthUser } from './model/auth.user';
 import * as dotenv from 'dotenv';
 import { AuthGuard } from 'src/guards/auth.guard';
+
 dotenv.config();
 
 @Controller('auth')
@@ -48,6 +49,18 @@ export class AuthController {
   @Get('/sign-in')
   getSignInPage() {
     return {};
+  }
+
+  @Render('verify-email')
+  @Get('/verify-email')
+  getVerifyPage() {
+    return {};
+  }
+
+  @Redirect(`${process.env.SIGN_IN}`)
+  @Get('/send-email')
+  sendVerifyEmail() {
+    return this.authService.verifyEmail();
   }
 
   @Render('create-user')

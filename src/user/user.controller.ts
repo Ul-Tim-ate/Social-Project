@@ -7,11 +7,17 @@ import {
   ParseIntPipe,
   Post,
   Render,
+	UseFilters,
+	UseGuards,
 } from '@nestjs/common';
 import { AuthUser } from 'src/auth/model/auth.user';
+import { UnVerifyEmailFilter } from 'src/filters/unverify.email.exception.filters';
+import { VerifyEmailGuard } from 'src/guards/email.verify.guard';
 import { UserCreateDto } from './dto/user.create.dto';
 import { UsersService } from './user.service';
 
+@UseGuards(VerifyEmailGuard)
+@UseFilters(UnVerifyEmailFilter)
 @Controller('/user')
 export class UserController {
   constructor(private readonly userService: UsersService) {}
