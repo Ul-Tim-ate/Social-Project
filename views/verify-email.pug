@@ -1,0 +1,13 @@
+doctype html
+html(lang='ru')
+	head
+		include partials/meta.pug
+		link(rel='stylesheet' href='/css/verify.css')
+		title Verify Email
+	body
+		form.verify(action='#')
+			h2.verify__header
+				| Please check your email to verify your account.
+			.verify__buttons
+				a.verify__button(href='#') CANCEL
+				input.verify__button(type='submit' value='RESEND EMAIL')

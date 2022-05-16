@@ -52,14 +52,10 @@ export class AuthService {
     const user = userCredential.user;
     return user.uid;
   }
-  checkAuth(): User {
+  checkAuth(): boolean {
     const auth = getAuth();
-    const user = auth.currentUser;
-    if (user) {
-      return user;
-    } else {
-      throw new UnauthorizedException();
-    }
+		const user = auth.currentUser;
+		return user ? true : false;
   }
   async userIsExist(email: string) {
     const emailExists = await admin
@@ -91,8 +87,8 @@ export class AuthService {
       });
   }
   deleteUser() {
-		const auth = getAuth();
-		const user = auth.currentUser
+    const auth = getAuth();
+    const user = auth.currentUser;
     deleteUser(user)
       .then(() => {
         this.userService.deleteUserByUID(user.uid);

@@ -1,6 +1,7 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { BadGatewayException, Controller, Get, HttpException, Redirect, Render, UseFilters } from '@nestjs/common';
 import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
+import { BadGatewayExceptionFilter } from './search/search.interceptor';
 import { UsersService } from './user/user.service';
 
 @Controller('/')
@@ -13,11 +14,17 @@ export class AppController {
 
   @Get('newtab')
   @Render('newtab')
-	async getNewTabPage() {
-		const { countOfOpens } = await this.userService.getUserByUID(
+  async getNewTabPage() {
+    const { countOfOpens } = await this.userService.getUserByUID(
       await this.authService.getCurrentUser().uid,
     );
     const allCollected = await this.userService.getAllCollected();
     return { allCollected, countOfOpens };
+  }
+
+  @Redirect('auth/email')
+  @Get('email')
+  async toAuthEmail() {
+    return;
   }
 }

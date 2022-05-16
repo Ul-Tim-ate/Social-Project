@@ -49,7 +49,7 @@ export class ProjectsService {
   async updateCurrentSumAndInvestedUsers(projectID: string, addSum: number) {
     let user;
     try {
-      user = await this.authService.checkAuth();
+      user = await this.authService.getCurrentUser();
     } catch (error) {
       throw new UnauthorizedException();
     }
@@ -68,12 +68,11 @@ export class ProjectsService {
     if (project.empty) {
       console.log('No matching documents.');
       return;
-		}
-		let projectProperties;
-		project.forEach((doc) => {
-			projectProperties = doc.data();
-
-		});
+    }
+    let projectProperties;
+    project.forEach((doc) => {
+      projectProperties = doc.data();
+    });
     return projectProperties;
   }
 }

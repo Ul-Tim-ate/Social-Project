@@ -6,10 +6,12 @@ import {
   Post,
   Redirect,
   Render,
+  UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthUser } from './model/auth.user';
 import * as dotenv from 'dotenv';
+import { AuthGuard } from 'src/guards/auth.guard';
 dotenv.config();
 
 @Controller('auth')
@@ -27,7 +29,11 @@ export class AuthController {
   getAuthEmailPage() {
     return {};
   }
-
+  @Redirect('email')
+  @Get('/auth/email')
+  toAuthEmail() {
+    return {};
+  }
   @HttpCode(200)
   @Redirect()
   @Post('/check')
@@ -62,18 +68,22 @@ export class AuthController {
   @Redirect()
   @Post('/register')
   async register(@Body() dto: AuthUser) {
-    console.log(dto);
     this.authService.createUserByEmail(dto);
-    return { url: `${process.env.HOST}auth/sign-in` };
+    return { url: `${process.env.SIGN_IN}` };
   }
 
   @Get('sign-out')
+  @UseGuards(AuthGuard)
+  @Redirect()
   signOut() {
     this.authService.signOut();
-	}
-	
+    return { url: `${process.env.AUTH_PAGE}` };
+  }
+  @UseGuards(AuthGuard)
+  @Redirect()
   @Get('delete')
   deleteUser() {
     this.authService.deleteUser();
+    return { url: `${process.env.AUTH_PAGE}` };
   }
 }
