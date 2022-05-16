@@ -70,9 +70,10 @@ export class ProjectsService {
       return;
     }
     let projectProperties;
-    project.forEach((doc) => {
-      projectProperties = doc.data();
-    });
+		project.forEach((doc) => {
+			projectProperties = doc.data();
+			projectProperties.id = doc.id;
+		});
     return projectProperties;
   }
 }

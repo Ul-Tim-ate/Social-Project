@@ -10,6 +10,7 @@ export class UserFactory {
     user.email = dto.email;
     user.dateOfRegist = dto.dateOfRegist;
 		user.passwordHash = dto.password; //нужно добавить хэширование bcrypt
+		user.supportedProjects = []; //нужно добавить хэширование bcrypt
     return user;
   }
 }

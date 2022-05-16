@@ -24,7 +24,9 @@ html(lang='ru')
 							span.progress__people from переменна people
 							img.progress__img(src='#' alt='')
 							span.progress__number
-						button.project-info__button Donate 10 scores
+						form.signin(method='post')
+							input.project-info__scores(type='number' name='scores' placeholder='10')
+							input.project-info__button(type='submit' value='Donate scores')
 				// /.main-wrapper
 				// /.container
 		footer.footer

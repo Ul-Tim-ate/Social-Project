@@ -1,6 +1,6 @@
 * {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -9,10 +9,11 @@ h1 {
   margin: 0;
 }
 
-body, html {
+body,
+html {
   font-family: 'Inter', sans-serif;
   scroll-behavior: smooth;
-  background-color: #C4C4C4;
+  background-color: #c4c4c4;
   height: 100%;
 }
 
@@ -41,14 +42,14 @@ body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .verify {
@@ -63,7 +64,7 @@ body {
 }
 
 .verify__button {
-  background-color: #C4C4C4;
+  background-color: #c4c4c4;
   padding: 10px;
   border: none;
   border-radius: 4px;
@@ -72,5 +73,8 @@ body {
 .verify__buttons {
   margin-left: auto;
   width: 250px;
+}
+.verify__cancel {
+  margin-right: 10px;
 }
 /*# sourceMappingURL=verify.css.map */

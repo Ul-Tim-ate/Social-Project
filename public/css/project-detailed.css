@@ -75,6 +75,15 @@ footer{
 	margin-bottom: 20px;
 }
 
+form{
+	width: 300px;
+	display: flex;
+}
+
+.project-info__scores{
+	width: 50px;
+}
+
 .project-info__button {
   background: #26C536;
   width: 100%;

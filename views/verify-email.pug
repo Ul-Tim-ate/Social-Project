@@ -9,5 +9,5 @@ html(lang='ru')
 			h2.verify__header
 				| Please check your email to verify your account.
 			.verify__buttons
-				a.verify__button(href=`${process.env.AUTH_PAGE}`) CANCEL
+				a.verify__button.verify__cancel(href=`${process.env.AUTH_PAGE}`) CANCEL
 				input.verify__button(type='submit' value='RESEND EMAIL')

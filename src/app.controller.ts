@@ -11,15 +11,6 @@ export class AppController {
     private readonly authService: AuthService,
   ) {}
 
-  @Get('newtab')
-  @Render('newtab')
-  async getNewTabPage() {
-    const { countOfOpens } = await this.userService.getUserByUID(
-      await this.authService.getCurrentUser().uid,
-    );
-    const allCollected = await this.userService.getAllCollected();
-    return { allCollected, countOfOpens };
-  }
 
 	@Redirect("auth/email")
   @Get('email')
