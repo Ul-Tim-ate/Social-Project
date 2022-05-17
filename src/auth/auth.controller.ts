@@ -30,6 +30,12 @@ export class AuthController {
   getAuthEmailPage() {
     return {};
   }
+
+  @Get('/google')
+  getGoogle() {
+    return this.authService.SignInWithGoogle();
+  }
+
   @Redirect('email')
   @Get('/auth/email')
   toAuthEmail() {
