@@ -11,8 +11,10 @@ html(lang='ru')
 					.header__burger
 					// /.avatar
 					ul.header__collected-info
-						li.header__all-collected Collected Total Today by All: #{allCollected}
-						li.header__you-collected You Collected: #{countOfOpens}
+						li.header__all-collected Collected Total Today by All:
+							spanb.collected #{allCollected}
+						li.header__you-collected You Collected: 
+							span.collected #{countOfOpens}
 				// /.header-wrapper
 				// /.container
 		main.main
@@ -29,3 +31,4 @@ html(lang='ru')
 				section.main__advert.advert
 					span.advert__text  Ad Banner
 			// /.container
+	script(src='js/newtab.js')
