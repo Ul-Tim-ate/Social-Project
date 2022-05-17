@@ -20,7 +20,8 @@ import { UsersService } from './user.service';
 @UseFilters(UnVerifyEmailFilter)
 @Controller('/user')
 export class UserController {
-  constructor(private readonly userService: UsersService) {}
+	constructor(private readonly userService: UsersService) { }
+	
   // @Post()
   // async createUser(@Body() user: UserCreateDto) {
   // 	return this.userService.createUser(user);

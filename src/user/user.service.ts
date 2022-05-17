@@ -7,7 +7,6 @@ import { UserCreateDto } from './dto/user.create.dto';
 import { UserFactory } from './factory/user.factory';
 import * as admin from 'firebase-admin';
 import { FieldValue } from 'firebase-admin/firestore';
-import { UserEntity } from './models/entity/user.entity';
 
 @Injectable()
 export class UsersService {
@@ -30,8 +29,15 @@ export class UsersService {
     const doc = await user.get();
     if (!doc.exists) {
       throw new NotFoundException();
-    } else {
-      return doc.data();
+		} else {
+      const userData = doc.data();
+      const date = userData.dateOfRegist;
+      const countOfOpens = userData.countOfOpens;
+      const a = new Date();
+      const currentDate = Date.parse(a.toString());
+      const days = (currentDate - Date.parse(date))/ 86400000;
+      userData.average = countOfOpens / Math.round(days);
+      return userData;
     }
   }
   async getAllUsers() {
@@ -92,7 +98,7 @@ export class UsersService {
     }
     let allCollected = 0;
     snapshot.forEach((doc) => {
-      allCollected += +doc.data().countOfOpens; //allUSers.push(doc.data());
+      allCollected += +doc.data().countOfOpens;
     });
     return allCollected;
   }
